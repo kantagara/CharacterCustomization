@@ -1082,7 +1082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 971.2321, y: -552.9585}
+  m_AnchoredPosition: {x: 971.23206, y: -552.9585}
   m_SizeDelta: {x: 290.974, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &398184043
@@ -2806,7 +2806,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 971.2321, y: -600.8785}
+  m_AnchoredPosition: {x: 971.23206, y: -600.8785}
   m_SizeDelta: {x: 288.99, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174274451
@@ -3419,7 +3419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 971.2321, y: -505.03848}
+  m_AnchoredPosition: {x: 971.23206, y: -505.03848}
   m_SizeDelta: {x: 289.364, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314937291
@@ -4061,7 +4061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -464.61688, y: 0}
+  m_AnchoredPosition: {x: -464.61694, y: 0}
   m_SizeDelta: {x: -929.235, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483581559
@@ -4448,6 +4448,8 @@ MonoBehaviour:
   password: {fileID: 1314937291}
   userManager: {fileID: 1252308398}
   lblLoginError: {fileID: 398184043}
+  loginButton: {fileID: 1138149197}
+  registerButton: {fileID: 1628448480}
 --- !u!1 &1786207272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,7 +4608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 971.2321, y: -467.11847}
+  m_AnchoredPosition: {x: 971.23206, y: -467.11847}
   m_SizeDelta: {x: 289.364, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1942046183
