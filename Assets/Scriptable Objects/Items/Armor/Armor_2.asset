@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00434722c5ed4e04ebe6393262b0b55b, type: 3}
+  m_Name: Armor_2
+  m_EditorClassIdentifier: 
+  <Prefab>k__BackingField: {fileID: 1824711553395194296, guid: b33737815cd437e46bb680e1da136e04, type: 3}
+  <Preview>k__BackingField: {fileID: 0}
