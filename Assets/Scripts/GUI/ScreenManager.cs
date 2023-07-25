@@ -33,23 +33,23 @@ namespace Scripts.GUI
 
             ShowScreen(defaultScreen);
 
-            EventSystem<OnUserLogin>.Subscribe(UserLogin);
-            EventSystem<OnUserLogout>.Subscribe(UserLogout);
+            EventSystem<OnUserJoined>.Subscribe(UserLogin);
+            EventSystem<OnUserLeft>.Subscribe(UserLogout);
         }
 
         private void OnDestroy()
         {
-            EventSystem<OnUserLogin>.Unsubscribe(UserLogin);
-            EventSystem<OnUserLogout>.Unsubscribe(UserLogout);
+            EventSystem<OnUserJoined>.Unsubscribe(UserLogin);
+            EventSystem<OnUserLeft>.Unsubscribe(UserLogout);
         }
 
-        private void UserLogout(OnUserLogout obj)
+        private void UserLogout(OnUserLeft obj)
         {
             ShowScreen(ScreenType.LoginRegister);
         }
 
 
-        private void UserLogin(OnUserLogin obj)
+        private void UserLogin(EventArgs obj)
         {
             ShowScreen(ScreenType.Customization);
         }

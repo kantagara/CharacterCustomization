@@ -57,8 +57,8 @@ namespace Scripts
 
             if (loggedIn)
             {
-                EventSystem<OnUserLogin>.Invoke(new OnUserLogin());
                 LocalUser = user;
+                EventSystem<OnUserJoined>.Invoke(new OnUserJoined());
             }
 
             return loggedIn;
@@ -71,8 +71,8 @@ namespace Scripts
             var registered = _userManagement.TryRegister(user, out message);
             if (registered)
             {
-                EventSystem<OnUserRegister>.Invoke(new OnUserRegister());
                 LocalUser = user;
+                EventSystem<OnUserJoined>.Invoke(new OnUserJoined());
             }
 
             return registered;
@@ -82,7 +82,7 @@ namespace Scripts
         {
             _userManagement.SaveAllUsers();
             LocalUser = null;
-            EventSystem<OnUserLogout>.Invoke(new OnUserLogout());
+            EventSystem<OnUserLeft>.Invoke(new OnUserLeft());
         }
     }
 }

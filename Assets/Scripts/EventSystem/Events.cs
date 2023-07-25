@@ -6,18 +6,15 @@ using Scripts.Model;
 namespace Scripts.EventSystem
 {
 
-    public class OnUserLogin : EventArgs
+    public class OnUserJoined : EventArgs
     {
         public User User { get; set; }
     }
-    public class OnUserLogout : EventArgs
+    public class OnUserLeft : EventArgs
     {
     }
 
-    public class OnUserRegister : EventArgs
-    {
-        
-    }
+   
 
     public class OnCategoryChanged : EventArgs
     {

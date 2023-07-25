@@ -28,8 +28,10 @@ namespace Scripts.GUI
 
         private void ToggleValueChanged(bool isOn)
         {
-            if(isOn)
+            if (isOn)
+            {
                 EventSystem<OnCategoryChanged>.Invoke(new OnCategoryChanged() {CurrentCategory = _category});
+            }
         }
 
         private void OnDestroy()

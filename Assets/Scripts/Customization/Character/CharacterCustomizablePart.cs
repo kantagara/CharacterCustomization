@@ -7,11 +7,19 @@ namespace Scripts.Customization.Character
     {
         [SerializeField] private K category;
 
+        private T _item;
+        
         protected virtual void Awake()
         {
             EventSystem<OnItemAdded>.Subscribe(ApplyCustomization);
             EventSystem<OnItemRemoved>.Subscribe(RemoveCustomization);
             EventSystem<OnCategoriesFetched>.Subscribe(OnCategoriesFetched);
+            EventSystem<OnUserLeft>.Subscribe(OnUserLogout);
+        }
+
+        private void OnUserLogout(OnUserLeft obj)
+        {
+            RemoveCustomization(_item);
         }
 
         protected virtual void OnDestroy()
@@ -19,6 +27,7 @@ namespace Scripts.Customization.Character
             EventSystem<OnItemAdded>.Unsubscribe(ApplyCustomization);
             EventSystem<OnItemRemoved>.Unsubscribe(RemoveCustomization);
             EventSystem<OnCategoriesFetched>.Unsubscribe(OnCategoriesFetched);
+            EventSystem<OnUserLeft>.Unsubscribe(OnUserLogout);
         }
 
         private void OnCategoriesFetched(OnCategoriesFetched obj)
@@ -28,7 +37,8 @@ namespace Scripts.Customization.Character
             if (!UserManager.LocalUser.CurrentlySelectedItems.ContainsKey(cat.Name)) return;
             var item = cat.Items.Find(x => x.Name == UserManager.LocalUser.CurrentlySelectedItems[cat.Name]);
             if (item == null) return;
-            ApplyCustomization((T)item);
+            _item = (T)item;
+            ApplyCustomization(_item);
         }
 
         private void RemoveCustomization(OnItemRemoved obj)

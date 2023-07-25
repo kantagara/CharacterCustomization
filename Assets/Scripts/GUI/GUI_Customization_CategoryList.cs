@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Scripts.Customization;
 using Scripts.EventSystem;
 using UnityEngine;
@@ -13,21 +15,35 @@ namespace Scripts.GUI
 
         private ICategoryFetcher _categoryFetcher;
 
-        private void Start()
+        private List<IItemCategory> _categories;
+
+        private void Awake()
         {
             _categoryFetcher = GetComponentInParent<ICategoryFetcher>();
 
-            var categories = _categoryFetcher.FetchCategories();
+            _categories = _categoryFetcher.FetchCategories();
+            EventSystem<OnCategoriesFetched>.Invoke(new OnCategoriesFetched(){Categories = _categories});
+
             
-            EventSystem<OnCategoriesFetched>.Invoke(new OnCategoriesFetched(){Categories = categories});
-
-
-            for (var index = 0; index < categories.Count; index++)
+            for (var index = 0; index < _categories.Count; index++)
             {
-                var category = categories[index];
+                var category = _categories[index];
                 var categoryButtonInstance = Instantiate(categoryToggle, customizationTabsParent);
                 categoryButtonInstance.Configure(toggleGroup, category, index == 0);
             }
+            
+            EventSystem<OnUserJoined>.Subscribe(OnUserLogin);
+        }
+
+        private void OnUserLogin(OnUserJoined obj)
+        {
+            if(_categories == null) return;
+            EventSystem<OnCategoriesFetched>.Invoke(new OnCategoriesFetched(){Categories = _categories});
+        }
+
+        private void OnDestroy()
+        {
+            EventSystem<OnUserJoined>.Unsubscribe(OnUserLogin);
         }
     }
 }

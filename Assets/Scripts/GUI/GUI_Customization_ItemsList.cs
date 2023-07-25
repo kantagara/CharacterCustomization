@@ -20,8 +20,8 @@ namespace Scripts.GUI
 
         private void Awake()
         {
-            EventSystem<OnCategoryChanged>.Subscribe(CategoryChanged);
             InstantiateCategoryPrefabs(INITIAL_ITEMS_AMOUNT);
+            EventSystem<OnCategoryChanged>.Subscribe(CategoryChanged);
         }
 
         private void OnDestroy()
