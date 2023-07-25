@@ -17,7 +17,7 @@ namespace Scripts.GUI
 
         private List<IItemCategory> _categories;
 
-        private void Awake()
+        private void Start()
         {
             _categoryFetcher = GetComponentInParent<ICategoryFetcher>();
 
@@ -38,7 +38,7 @@ namespace Scripts.GUI
         private void OnUserLogin(OnUserJoined obj)
         {
             if(_categories == null) return;
-            EventSystem<OnCategoriesFetched>.Invoke(new OnCategoriesFetched(){Categories = _categories});
+            EventSystem<OnUserLoginCategoriesReady>.Invoke(new OnUserLoginCategoriesReady(){Categories = _categories});
         }
 
         private void OnDestroy()

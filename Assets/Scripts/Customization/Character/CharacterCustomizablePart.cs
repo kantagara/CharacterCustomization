@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Scripts.EventSystem;
 using UnityEngine;
 
@@ -8,13 +9,29 @@ namespace Scripts.Customization.Character
         [SerializeField] private K category;
 
         private T _item;
-        
+
         protected virtual void Awake()
         {
             EventSystem<OnItemAdded>.Subscribe(ApplyCustomization);
             EventSystem<OnItemRemoved>.Subscribe(RemoveCustomization);
-            EventSystem<OnCategoriesFetched>.Subscribe(OnCategoriesFetched);
+            EventSystem<OnUserLoginCategoriesReady>.Subscribe(OnUserLoginCategoriesReady);
             EventSystem<OnUserLeft>.Subscribe(OnUserLogout);
+            EventSystem<OnCategoriesFetched>.Subscribe(OnCategoriesFetched);
+
+        }
+
+        protected virtual void OnDestroy()
+        {
+            EventSystem<OnItemAdded>.Unsubscribe(ApplyCustomization);
+            EventSystem<OnItemRemoved>.Unsubscribe(RemoveCustomization);
+            EventSystem<OnUserLoginCategoriesReady>.Unsubscribe(OnUserLoginCategoriesReady);
+            EventSystem<OnCategoriesFetched>.Unsubscribe(OnCategoriesFetched);
+            EventSystem<OnUserLeft>.Unsubscribe(OnUserLogout);
+        }
+
+        private void OnCategoriesFetched(OnCategoriesFetched obj)
+        {
+            UpdateClothing(obj.Categories);
         }
 
         private void OnUserLogout(OnUserLeft obj)
@@ -22,17 +39,14 @@ namespace Scripts.Customization.Character
             RemoveCustomization(_item);
         }
 
-        protected virtual void OnDestroy()
+        private void OnUserLoginCategoriesReady(OnUserLoginCategoriesReady obj)
         {
-            EventSystem<OnItemAdded>.Unsubscribe(ApplyCustomization);
-            EventSystem<OnItemRemoved>.Unsubscribe(RemoveCustomization);
-            EventSystem<OnCategoriesFetched>.Unsubscribe(OnCategoriesFetched);
-            EventSystem<OnUserLeft>.Unsubscribe(OnUserLogout);
+            UpdateClothing(obj.Categories);
         }
 
-        private void OnCategoriesFetched(OnCategoriesFetched obj)
+        private void UpdateClothing(List<IItemCategory> categories)
         {
-            var cat = obj.Categories.Find(x => x.Name == category.Name);
+            var cat = categories.Find(x => x.Name == category.Name);
             if (cat == null) return;
             if (!UserManager.LocalUser.CurrentlySelectedItems.ContainsKey(cat.Name)) return;
             var item = cat.Items.Find(x => x.Name == UserManager.LocalUser.CurrentlySelectedItems[cat.Name]);

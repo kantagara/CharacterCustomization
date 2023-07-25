@@ -31,6 +31,14 @@ namespace Scripts.EventSystem
         public List<IItemCategory> Categories { get; set; }
     }
 
+
+
+    public class OnUserLoginCategoriesReady : EventArgs
+    {
+        public List<IItemCategory> Categories { get; set; }
+
+    }
+
     public class OnItemRemoved : EventArgs
     {
         public IItem Item { get; set; }
